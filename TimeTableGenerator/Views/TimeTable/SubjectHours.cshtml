@@ -1,0 +1,49 @@
+﻿@model List<SubjectHoursModel>
+<form asp-action="SubjectHours" method="post">
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <div>
+            <label>Subject Name:</label>
+            <input name="[@i].SubjectName" class="subject-name" value="@Model[i].SubjectName" required />
+
+            <label>Hours:</label>
+            <input type="number" name="[@i].Hours" class="subject-hours" value="@Model[i].Hours" required />
+        </div> 
+        <hr />
+    }
+    <button type="submit" id="validateButton" disabled>Generate</button>
+</form>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function checkFormComplete() {
+            let isValid = true;
+
+            $('.subject-name').each(function () {
+                if ($(this).val().trim() === '') {
+                    isValid = false;
+                    return false;
+                }
+            });
+
+            $('.subject-hours').each(function () {
+                const val = $(this).val().trim();
+                if (val === '' || parseInt(val) <= 0) {
+                    isValid = false;
+                    return false;
+                }
+            });
+
+            $('#validateButton').prop('disabled', !isValid);
+        }
+
+        $(document).ready(function () {
+            $('input').on('input', function () {
+                checkFormComplete();
+            });
+
+            checkFormComplete(); // Initial check in case fields are pre-filled
+        });
+    </script>
+}

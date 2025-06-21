@@ -1,0 +1,25 @@
+﻿@model List<List<string>>
+@{
+    int days = ViewBag.WorkingDays;
+}
+<table border="1">
+    <thead>
+        <tr>
+            @for (int i = 1; i <= days; i++)
+            {
+                <th>Day @i</th>    
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var row in Model)
+        {
+            <tr>
+                @foreach(var subject in row)
+                {
+                    <td>@subject</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,12 @@
+﻿@model InputModel
+<form asp-action="Index" method="post">
+    <label>Working Days(1-7):</label>
+    <input asp-for="WorkingDays" /><br />
+    <label>Subjects Per Days(1-8):</label>
+    <input asp-for="SubjectsPerDay" /><br />
+    <label>Total Subjects:</label>
+    <input asp-for="TotalSubjects" /><br />
+    <label>Total Hours (auto):</label>
+    <input value="@Model?.TotalHours"disabled /><br />
+    <button type="submit">Next</button>
+</form>
